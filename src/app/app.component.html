@@ -3,7 +3,52 @@
   <h1>
     Welcome to {{ title }}!
   </h1>
+
+  <div *ngIf="user.nome" style="text-align:left; font-size: 19px;">
+      Meu nome é: {{ user.nome }}<br/>
+      Minha idade: {{ user.idade }} <br/>
+      <div *ngIf="user.address && user.address.length > 0">
+        <div *ngFor="let address of user.address; let i = index;">
+          Meu endereço é: Rua {{ address.endereco}} numero {{ address.numero }} em {{ address.uf }} <br/>  <button (click)="removeAddress(i)">deleta endereco</button>
+      </div>
+      </div>
+      Nome do animal é : {{ user.animal }}<br/>
+  </div>
+  <br/> <br>
+
+  <form action="">
+    <div style="text-align:left; font-size: 19px;">
+      <div *ngIf="!user.nome">
+        Nome: <input type="text" [(ngModel)]="newUser.nome"  name="username" id="username" ><br/>      
+        Idade: <input type="number"  [(ngModel)]="newUser.idade"  name="useridade" id="useridade" > <br/>   
+        <button (click)="saveUser()">Salva</button>
+      </div>
+      <div *ngIf="user.nome">
+        Rua: <input type="text"  [(ngModel)]="newAdresses.endereco"  name="userendereco" id="userendereco" ><br/>
+        Numero: <input type="text"  [(ngModel)]="newAdresses.numero"  name="usernumero" id="usernumero" > <br/>
+        UF: <input type="text"  [(ngModel)]="newAdresses.uf"  name="useruf" id="useruf" > <br/>
+        Animal: <input type="text"  [(ngModel)]="user.animal"  name="useranimal" id="useranimal"> <br/>
+        <button (click)="addAddress()">salva endereco</button> 
+      </div>
+    </div>
+   
+  </form>
+  <!--Nome: <input type="text"  #txtNome><br/>
+  Idade: <input type="number"  #txtIdade> <br/>   
+  Rua: <input type="text"  #txtEndereco><br/>
+  Numero: <input type="text"  #txtNumero> <br/>
+  UF: <input type="text"  #txtUf> <br/>
+  Animal: <input type="text"  #txtAnimal> <br/>-->
+
+
+  
+  <!--button (click)="setFormulario()">Salva</button -->
+</div>
+
+<div>
+
   <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+
 </div>
 <h2>Here are some links to help you start: </h2>
 <ul>
