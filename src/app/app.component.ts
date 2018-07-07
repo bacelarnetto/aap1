@@ -16,13 +16,13 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app';
   user: UserModel;
-  animal =' '  
+  animal = ' '
   adresses: Array<Address>;
   newAdresses = new Address();
   newUser = new UserModel();
   logado = false;
 
-  constructor(private _userService: UserService){
+  constructor(private _userService: UserService) {
     this.user = new UserModel();
     this.adresses = new Array<Address>();
     this._userService.getUser().then(user => {
@@ -30,48 +30,46 @@ export class AppComponent {
     });
   }
 
-  setFormulario(){ 
-    let address = this.newAdresses ;
-    if(address != null){
+  setFormulario() {
+    let address = this.newAdresses;
+    if (address != null) {
       this.user.address.push(this.newAdresses);
       console.log(this.user.address);
-    }    
+    }
   }
 
   saveUser() {
-    if(this.newUser.nome && this.newUser.idade){
-      this._userService.createUser(this.newUser).then(user =>{    
+    if (this.newUser.nome && this.newUser.idade) {
+      this._userService.createUser(this.newUser).then(user => {
         this.user = user;
-        let address = this.newAdresses ;
-        if(address != null){
+        let address = this.newAdresses;
+        if (address != null) {
           this.user.address.push(this.newAdresses);
           console.log(this.user.address);
         }
         console.log(user);
-      }).catch(e =>{
+      }).catch(e => {
         console.log(e);
       })
     }
   }
 
   addAddress() {
-    if(this.newAdresses.endereco && this.newAdresses.uf && this.newAdresses.numero){
-      this._userService.addAddress(this.newAdresses).then(adresses =>{    
+    if (this.newAdresses.endereco && this.newAdresses.uf && this.newAdresses.numero) {
+      this._userService.addAddress(this.newAdresses).then(adresses => {
         this.user.address.push(adresses);
-      }).catch(e =>{
+      }).catch(e => {
         console.log(e);
       })
     }
   }
 
   removeAddress(deleteIndex: number) {
-    if(this.newAdresses.endereco && this.newAdresses.uf && this.newAdresses.numero){
-      this._userService.removerAddress(deleteIndex).then(adresses => {    
-        let address = this.newAdresses ;
-      }).catch(e =>{
-        console.log(e);
-      })
-    }
+    this._userService.removerAddress(deleteIndex).then(adresses => {
+      this.user.address = adresses;
+    }).catch(e => {
+      console.log(e);
+    })
   }
 
 

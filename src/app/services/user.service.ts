@@ -59,7 +59,7 @@ export class UserService {
   }
 
 
-  removerAddress(index): Promise<Address>{
+  removerAddress(index): Promise<Array<Address>>{
     return new Promise((resolve, reject) =>{
       const user = localStorage.getItem(this.USER_STORAGE_NAME);
       if(user){

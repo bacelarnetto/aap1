@@ -4,7 +4,7 @@
     Welcome to {{ title }}!
   </h1>
 
-  <div *ngIf="user.nome" style="text-align:left; font-size: 19px;">
+  <div *ngIf="user" style="text-align:left; font-size: 19px;">
       Meu nome é: {{ user.nome }}<br/>
       Minha idade: {{ user.idade }} <br/>
       <div *ngIf="user.address && user.address.length > 0">
@@ -18,12 +18,12 @@
 
   <form action="">
     <div style="text-align:left; font-size: 19px;">
-      <div *ngIf="!user.nome">
+      <div *ngIf="!user">
         Nome: <input type="text" [(ngModel)]="newUser.nome"  name="username" id="username" ><br/>      
         Idade: <input type="number"  [(ngModel)]="newUser.idade"  name="useridade" id="useridade" > <br/>   
         <button (click)="saveUser()">Salva</button>
       </div>
-      <div *ngIf="user.nome">
+      <div *ngIf="user">
         Rua: <input type="text"  [(ngModel)]="newAdresses.endereco"  name="userendereco" id="userendereco" ><br/>
         Numero: <input type="text"  [(ngModel)]="newAdresses.numero"  name="usernumero" id="usernumero" > <br/>
         UF: <input type="text"  [(ngModel)]="newAdresses.uf"  name="useruf" id="useruf" > <br/>
